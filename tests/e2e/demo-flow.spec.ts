@@ -39,7 +39,7 @@ test("new visitor completes registration through snapshot history", async ({
 
   await page.getByLabel("Portfolio name").fill("Interview Demo");
   await page.getByRole("button", { name: "Create portfolio" }).click();
-  await page.getByRole("link", { name: /Interview Demo/ }).click();
+  await expect(page).toHaveURL(/\/portfolios\/[0-9a-f-]+$/);
   await expect(page.getByRole("heading", { name: "Interview Demo" })).toBeVisible();
 
   await page.getByLabel("Date and time").fill("2025-01-02T09:00");

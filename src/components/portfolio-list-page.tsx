@@ -2,6 +2,7 @@
 
 import { ArrowRight, BriefcaseBusiness, LoaderCircle, Plus } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 import { StatusBanner } from "@/components/status-banner";
@@ -9,6 +10,7 @@ import type { Portfolio, PortfolioPage } from "@/lib/api/types";
 import { apiRequest, jsonBody, userFacingError } from "@/lib/client/api-client";
 
 export function PortfolioListPage() {
+  const router = useRouter();
   const [page, setPage] = useState<PortfolioPage | null>(null);
   const [name, setName] = useState("");
   const [creating, setCreating] = useState(false);
@@ -42,12 +44,7 @@ export function PortfolioListPage() {
         ...jsonBody({ name, base_currency: "USD" }),
       });
       setName("");
-      setPage((current) => ({
-        items: [portfolio, ...(current?.items ?? [])],
-        total: (current?.total ?? 0) + 1,
-        limit: 100,
-        offset: 0,
-      }));
+      router.push(`/portfolios/${portfolio.id}`);
     } catch (requestError) {
       setError(userFacingError(requestError));
     } finally {
