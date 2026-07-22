@@ -78,4 +78,6 @@ pnpm api:types:check
 ```
 
 See [docs/architecture.md](docs/architecture.md) for the trust boundary and
-route policy, and [CHANGELOG.md](CHANGELOG.md) for release scope.
+route policy, [docs/deployment.md](docs/deployment.md) for the Vercel/Render/
+Neon/Upstash production runbook, and [CHANGELOG.md](CHANGELOG.md) for release
+scope.
