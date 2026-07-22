@@ -4,6 +4,57 @@
  */
 
 export interface paths {
+    "/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Login */
+        post: operations["login_auth_login_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Register */
+        post: operations["register_auth_register_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Health Check */
+        get: operations["health_check_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/portfolios": {
         parameters: {
             query?: never;
@@ -33,58 +84,6 @@ export interface paths {
         get: operations["get_portfolio_portfolios__portfolio_id__get"];
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/portfolios/{portfolio_id}/transactions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List Transactions */
-        get: operations["list_transactions_portfolios__portfolio_id__transactions_get"];
-        put?: never;
-        /** Create Transaction */
-        post: operations["create_transaction_portfolios__portfolio_id__transactions_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/portfolios/{portfolio_id}/transactions/import/preview": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Preview Transaction Import */
-        post: operations["preview_transaction_import_portfolios__portfolio_id__transactions_import_preview_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/portfolios/{portfolio_id}/transactions/import": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Commit Transaction Import */
-        post: operations["commit_transaction_import_portfolios__portfolio_id__transactions_import_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -126,7 +125,25 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/auth/register": {
+    "/portfolios/{portfolio_id}/transactions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Transactions */
+        get: operations["list_transactions_portfolios__portfolio_id__transactions_get"];
+        put?: never;
+        /** Create Transaction */
+        post: operations["create_transaction_portfolios__portfolio_id__transactions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/portfolios/{portfolio_id}/transactions/import": {
         parameters: {
             query?: never;
             header?: never;
@@ -135,15 +152,15 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Register */
-        post: operations["register_auth_register_post"];
+        /** Commit Transaction Import */
+        post: operations["commit_transaction_import_portfolios__portfolio_id__transactions_import_post"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/auth/login": {
+    "/portfolios/{portfolio_id}/transactions/import/preview": {
         parameters: {
             query?: never;
             header?: never;
@@ -152,25 +169,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Login */
-        post: operations["login_auth_login_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/health": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Health Check */
-        get: operations["health_check_health_get"];
-        put?: never;
-        post?: never;
+        /** Preview Transaction Import */
+        post: operations["preview_transaction_import_portfolios__portfolio_id__transactions_import_preview_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -185,71 +185,71 @@ export interface components {
         AccessTokenResponse: {
             /** Access Token */
             access_token: string;
+            /** Expires In */
+            expires_in: number;
             /**
              * Token Type
              * @default bearer
              */
             token_type: string;
-            /** Expires In */
-            expires_in: number;
         };
         /** AnalysisSnapshotPageResponse */
         AnalysisSnapshotPageResponse: {
             /** Items */
             items: components["schemas"]["AnalysisSnapshotResponse"][];
-            /** Total */
-            total: number;
             /** Limit */
             limit: number;
             /** Offset */
             offset: number;
+            /** Total */
+            total: number;
         };
         /** AnalysisSnapshotResponse */
         AnalysisSnapshotResponse: {
-            /**
-             * Id
-             * Format: uuid
-             */
-            id: string;
             /**
              * As Of
              * Format: date
              */
             as_of: string;
-            metrics: components["schemas"]["SnapshotMetricsResponse"];
-            methodology: components["schemas"]["MethodologyResponse"];
-            /** Summary */
-            summary: string | null;
-            /** Generator */
-            generator: string | null;
-            /** Model Name */
-            model_name: string | null;
-            /** Prompt Version */
-            prompt_version: string | null;
             /**
              * Generated At
              * Format: date-time
              */
             generated_at: string;
+            /** Generator */
+            generator: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            methodology: components["schemas"]["MethodologyResponse"];
+            metrics: components["schemas"]["SnapshotMetricsResponse"];
+            /** Model Name */
+            model_name: string | null;
+            /** Prompt Version */
+            prompt_version: string | null;
+            /** Summary */
+            summary: string | null;
         };
         /** AssetWeightResponse */
         AssetWeightResponse: {
-            /** Symbol */
-            symbol: string;
             /** Market Value */
             market_value: string;
+            /** Symbol */
+            symbol: string;
             /** Weight */
             weight: string;
         };
         /** CreatePortfolioRequest */
         CreatePortfolioRequest: {
-            /** Name */
-            name: string;
             /**
              * Base Currency
              * @default USD
              */
             base_currency: string;
+            /** Name */
+            name: string;
         };
         /** ErrorBody */
         ErrorBody: {
@@ -281,6 +281,16 @@ export interface components {
         MethodologyResponse: {
             /** Annual Risk Free Rate */
             annual_risk_free_rate: string;
+            /** Annualization Periods */
+            annualization_periods: number;
+            /** Cash Flow Policy */
+            cash_flow_policy: string;
+            /** Date Alignment Policy */
+            date_alignment_policy: string;
+            /** Fee Policy */
+            fee_policy: string;
+            price_basis: components["schemas"]["PriceBasis"];
+            return_type: components["schemas"]["ReturnType"];
             /**
              * Risk Free Rate As Of
              * Format: date
@@ -288,43 +298,33 @@ export interface components {
             risk_free_rate_as_of: string;
             /** Risk Free Rate Assumption */
             risk_free_rate_assumption: string;
-            price_basis: components["schemas"]["PriceBasis"];
-            return_type: components["schemas"]["ReturnType"];
-            /** Annualization Periods */
-            annualization_periods: number;
-            /** Valuation Method */
-            valuation_method: string;
-            /** Cash Flow Policy */
-            cash_flow_policy: string;
-            /** Fee Policy */
-            fee_policy: string;
-            /** Date Alignment Policy */
-            date_alignment_policy: string;
             /** Transaction Date Timezone */
             transaction_date_timezone: string;
+            /** Valuation Method */
+            valuation_method: string;
         };
         /** PortfolioAnalyticsResponse */
         PortfolioAnalyticsResponse: {
+            /** Annualized Volatility */
+            annualized_volatility: number | null;
             /**
              * As Of
              * Format: date
              */
             as_of: string;
-            /** Simple Return */
-            simple_return: number | null;
-            /** Annualized Volatility */
-            annualized_volatility: number | null;
-            /** Max Drawdown */
-            max_drawdown: number | null;
-            /** Sharpe Ratio */
-            sharpe_ratio: number | null;
-            /** Portfolio Value */
-            portfolio_value: string;
-            /** Cash Balance */
-            cash_balance: string;
             /** Asset Weights */
             asset_weights: components["schemas"]["AssetWeightResponse"][];
+            /** Cash Balance */
+            cash_balance: string;
+            /** Max Drawdown */
+            max_drawdown: number | null;
             methodology: components["schemas"]["MethodologyResponse"];
+            /** Portfolio Value */
+            portfolio_value: string;
+            /** Sharpe Ratio */
+            sharpe_ratio: number | null;
+            /** Simple Return */
+            simple_return: number | null;
             /** Stale */
             stale: boolean;
         };
@@ -335,37 +335,39 @@ export interface components {
              * Format: date
              */
             as_of: string;
-            risk_level: components["schemas"]["RiskLevel"];
-            /** Summary */
-            summary: string;
-            /** Key Factors */
-            key_factors: string[];
-            /** Limitations */
-            limitations: string[];
             /** Disclaimer */
             disclaimer: string;
             /** Generator */
             generator: string;
+            /** Key Factors */
+            key_factors: string[];
+            /** Limitations */
+            limitations: string[];
             /** Model Name */
             model_name: string | null;
             /** Prompt Version */
             prompt_version: string;
+            risk_level: components["schemas"]["RiskLevel"];
             /** Stale */
             stale: boolean;
+            /** Summary */
+            summary: string;
         };
         /** PortfolioPageResponse */
         PortfolioPageResponse: {
             /** Items */
             items: components["schemas"]["PortfolioResponse"][];
-            /** Total */
-            total: number;
             /** Limit */
             limit: number;
             /** Offset */
             offset: number;
+            /** Total */
+            total: number;
         };
         /** PortfolioResponse */
         PortfolioResponse: {
+            /** Base Currency */
+            base_currency: string;
             /**
              * Id
              * Format: uuid
@@ -373,8 +375,6 @@ export interface components {
             id: string;
             /** Name */
             name: string;
-            /** Base Currency */
-            base_currency: string;
         };
         /**
          * PriceBasis
@@ -410,21 +410,21 @@ export interface components {
         };
         /** SnapshotMetricsResponse */
         SnapshotMetricsResponse: {
+            /** Annualized Volatility */
+            annualized_volatility: number | null;
             /**
              * As Of
              * Format: date
              */
             as_of: string;
-            /** Simple Return */
-            simple_return: number | null;
-            /** Annualized Volatility */
-            annualized_volatility: number | null;
+            /** Asset Weights */
+            asset_weights: components["schemas"]["SnapshotAssetWeightResponse"][];
             /** Max Drawdown */
             max_drawdown: number | null;
             /** Sharpe Ratio */
             sharpe_ratio: number | null;
-            /** Asset Weights */
-            asset_weights: components["schemas"]["SnapshotAssetWeightResponse"][];
+            /** Simple Return */
+            simple_return: number | null;
             /** Stale */
             stale: boolean;
         };
@@ -436,34 +436,34 @@ export interface components {
         };
         /** TransactionImportCommitRowResponse */
         TransactionImportCommitRowResponse: {
-            /** Row Number */
-            row_number: number;
-            /** External Id */
-            external_id: string | null;
-            status: components["schemas"]["TransactionImportRowStatus"];
-            transaction: components["schemas"]["TransactionResponse"] | null;
             /** Errors */
             errors: components["schemas"]["TransactionImportIssueResponse"][];
+            /** External Id */
+            external_id: string | null;
+            /** Row Number */
+            row_number: number;
+            status: components["schemas"]["TransactionImportRowStatus"];
+            transaction: components["schemas"]["TransactionResponse"] | null;
         };
         /** TransactionImportCommitSummaryResponse */
         TransactionImportCommitSummaryResponse: {
-            /** Total Rows */
-            total_rows: number;
             /** Created Rows */
             created_rows: number;
-            /** Replayed Rows */
-            replayed_rows: number;
             /** Failed Rows */
             failed_rows: number;
+            /** Replayed Rows */
+            replayed_rows: number;
+            /** Total Rows */
+            total_rows: number;
         };
         /** TransactionImportIssueResponse */
         TransactionImportIssueResponse: {
             /** Code */
             code: string;
-            /** Message */
-            message: string;
             /** Field */
             field: string | null;
+            /** Message */
+            message: string;
         };
         /** TransactionImportPreviewResponse */
         TransactionImportPreviewResponse: {
@@ -473,25 +473,25 @@ export interface components {
         };
         /** TransactionImportPreviewRowResponse */
         TransactionImportPreviewRowResponse: {
-            /** Row Number */
-            row_number: number;
-            /** External Id */
-            external_id: string | null;
-            status: components["schemas"]["TransactionImportRowStatus"];
-            normalized: components["schemas"]["TransactionImportValueResponse"] | null;
             /** Errors */
             errors: components["schemas"]["TransactionImportIssueResponse"][];
+            /** External Id */
+            external_id: string | null;
+            normalized: components["schemas"]["TransactionImportValueResponse"] | null;
+            /** Row Number */
+            row_number: number;
+            status: components["schemas"]["TransactionImportRowStatus"];
         };
         /** TransactionImportPreviewSummaryResponse */
         TransactionImportPreviewSummaryResponse: {
-            /** Total Rows */
-            total_rows: number;
+            /** Invalid Rows */
+            invalid_rows: number;
             /** Ready Rows */
             ready_rows: number;
             /** Replay Rows */
             replay_rows: number;
-            /** Invalid Rows */
-            invalid_rows: number;
+            /** Total Rows */
+            total_rows: number;
         };
         /**
          * TransactionImportRowStatus
@@ -500,79 +500,79 @@ export interface components {
         TransactionImportRowStatus: "ready" | "replay" | "invalid" | "created" | "replayed" | "failed";
         /** TransactionImportValueResponse */
         TransactionImportValueResponse: {
+            /** Cash Amount */
+            cash_amount: string | null;
             /** External Id */
             external_id: string;
-            transaction_type: components["schemas"]["TransactionType"];
+            /** Fees */
+            fees: string;
             /**
              * Occurred At
              * Format: date-time
              */
             occurred_at: string;
-            /** Symbol */
-            symbol: string | null;
             /** Quantity */
             quantity: string | null;
+            /** Symbol */
+            symbol: string | null;
+            transaction_type: components["schemas"]["TransactionType"];
             /** Unit Price */
             unit_price: string | null;
-            /** Cash Amount */
-            cash_amount: string | null;
-            /** Fees */
-            fees: string;
         };
         /** TransactionInput */
         TransactionInput: {
-            /** External Id */
-            external_id: string;
-            transaction_type: components["schemas"]["TransactionType"];
-            /**
-             * Occurred At
-             * Format: date-time
-             */
-            occurred_at: string;
-            /** Symbol */
-            symbol?: string | null;
-            /** Quantity */
-            quantity?: number | string | null;
-            /** Unit Price */
-            unit_price?: number | string | null;
             /** Cash Amount */
             cash_amount?: number | string | null;
+            /** External Id */
+            external_id: string;
             /**
              * Fees
              * @default 0
              */
             fees: number | string;
+            /**
+             * Occurred At
+             * Format: date-time
+             */
+            occurred_at: string;
+            /** Quantity */
+            quantity?: number | string | null;
+            /** Symbol */
+            symbol?: string | null;
+            transaction_type: components["schemas"]["TransactionType"];
+            /** Unit Price */
+            unit_price?: number | string | null;
         };
         /** TransactionResponse */
         TransactionResponse: {
+            /** Cash Amount */
+            cash_amount: string | null;
+            /** External Id */
+            external_id: string;
+            /** Fees */
+            fees: string;
             /**
              * Id
              * Format: uuid
              */
             id: string;
             /**
-             * Portfolio Id
-             * Format: uuid
-             */
-            portfolio_id: string;
-            /** External Id */
-            external_id: string;
-            transaction_type: components["schemas"]["TransactionType"];
-            /**
              * Occurred At
              * Format: date-time
              */
             occurred_at: string;
-            /** Symbol */
-            symbol: string | null;
+            /**
+             * Portfolio Id
+             * Format: uuid
+             */
+            portfolio_id: string;
             /** Quantity */
             quantity: string | null;
+            /** Symbol */
+            symbol: string | null;
+            transaction_type: components["schemas"]["TransactionType"];
             /** Unit Price */
             unit_price: string | null;
-            /** Cash Amount */
-            cash_amount: string | null;
-            /** Fees */
-            fees: string;
         };
         /**
          * TransactionType
@@ -581,26 +581,26 @@ export interface components {
         TransactionType: "BUY" | "SELL" | "DEPOSIT" | "WITHDRAWAL";
         /** UserResponse */
         UserResponse: {
+            /** Email */
+            email: string;
             /**
              * Id
              * Format: uuid
              */
             id: string;
-            /** Email */
-            email: string;
         };
         /** ValidationError */
         ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
             /** Location */
             loc: (string | number)[];
             /** Message */
             msg: string;
             /** Error Type */
             type: string;
-            /** Input */
-            input?: unknown;
-            /** Context */
-            ctx?: Record<string, never>;
         };
     };
     responses: never;
@@ -611,6 +611,130 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    login_auth_login_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccessTokenResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    register_auth_register_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserResponse"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    health_check_health_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: string;
+                    };
+                };
+            };
+        };
+    };
     list_portfolios_portfolios_get: {
         parameters: {
             query?: {
@@ -730,223 +854,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Too Many Requests */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    list_transactions_portfolios__portfolio_id__transactions_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                portfolio_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TransactionResponse"][];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-            /** @description Too Many Requests */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    create_transaction_portfolios__portfolio_id__transactions_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                portfolio_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TransactionInput"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TransactionResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Conflict */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Unprocessable Entity */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Too Many Requests */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    preview_transaction_import_portfolios__portfolio_id__transactions_import_preview_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                portfolio_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "text/csv": string;
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TransactionImportPreviewResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Unprocessable Entity */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Too Many Requests */
-            429: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
-    };
-    commit_transaction_import_portfolios__portfolio_id__transactions_import_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                portfolio_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "text/csv": string;
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TransactionImportCommitResponse"];
-                };
-            };
-            /** @description Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
-                };
-            };
-            /** @description Unprocessable Entity */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Too Many Requests */
@@ -1120,16 +1027,67 @@ export interface operations {
             };
         };
     };
-    register_auth_register_post: {
+    list_transactions_portfolios__portfolio_id__transactions_get: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                portfolio_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionResponse"][];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    create_transaction_portfolios__portfolio_id__transactions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                portfolio_id: string;
+            };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["RegisterRequest"];
+                "application/json": components["schemas"]["TransactionInput"];
             };
         };
         responses: {
@@ -1139,7 +1097,16 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserResponse"];
+                    "application/json": components["schemas"]["TransactionResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
             /** @description Conflict */
@@ -1171,16 +1138,18 @@ export interface operations {
             };
         };
     };
-    login_auth_login_post: {
+    commit_transaction_import_portfolios__portfolio_id__transactions_import_post: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                portfolio_id: string;
+            };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["LoginRequest"];
+                "text/csv": string;
             };
         };
         responses: {
@@ -1190,11 +1159,11 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AccessTokenResponse"];
+                    "application/json": components["schemas"]["TransactionImportCommitResponse"];
                 };
             };
-            /** @description Unauthorized */
-            401: {
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1222,14 +1191,20 @@ export interface operations {
             };
         };
     };
-    health_check_health_get: {
+    preview_transaction_import_portfolios__portfolio_id__transactions_import_preview_post: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                portfolio_id: string;
+            };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "text/csv": string;
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -1237,9 +1212,34 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: string;
-                    };
+                    "application/json": components["schemas"]["TransactionImportPreviewResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
