@@ -97,7 +97,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get Portfolio Analytics */
+        /** Get Portfolio Analysis */
         get: operations["get_portfolio_analytics_portfolios__portfolio_id__analytics_get"];
         put?: never;
         post?: never;

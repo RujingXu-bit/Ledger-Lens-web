@@ -1691,7 +1691,7 @@
             "HTTPBearer": []
           }
         ],
-        "summary": "Get Portfolio Analytics",
+        "summary": "Get Portfolio Analysis",
         "tags": [
           "portfolios"
         ]
