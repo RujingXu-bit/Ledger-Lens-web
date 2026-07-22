@@ -1,5 +1,18 @@
 # Portfolio Analytics Web
 
+[![CI](https://github.com/RujingXu-bit/portfolio-analytics-web/actions/workflows/ci.yml/badge.svg)](https://github.com/RujingXu-bit/portfolio-analytics-web/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/RujingXu-bit/portfolio-analytics-web)](https://github.com/RujingXu-bit/portfolio-analytics-web/releases/tag/v1.0.0)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?logo=vercel)](https://portfolio-analytics-web-hazel.vercel.app)
+[![Backend](https://img.shields.io/badge/Backend-FastAPI-05998b?logo=fastapi)](https://github.com/RujingXu-bit/portfolio-analytics-api)
+
+[Live Demo](https://portfolio-analytics-web-hazel.vercel.app) ·
+[Offline Fixture](https://portfolio-analytics-web-hazel.vercel.app/demo) ·
+[Three-Minute Video](https://github.com/RujingXu-bit/portfolio-analytics-api/releases/download/v1.1.0/portfolio-analytics-demo.mp4) ·
+[Backend Release](https://github.com/RujingXu-bit/portfolio-analytics-api/releases/tag/v1.1.0) ·
+[Interview Guide](https://github.com/RujingXu-bit/portfolio-analytics-api/blob/main/docs/interview-guide.md)
+
+![Portfolio Analytics dashboard showing four historical metrics and asset allocation](docs/assets/dashboard-demo.png)
+
 Independent Next.js dashboard for the
 [Portfolio Analytics API v1.1.0](https://github.com/RujingXu-bit/portfolio-analytics-api/releases/tag/v1.1.0).
 It turns an owner-scoped transaction ledger into explainable historical metrics
